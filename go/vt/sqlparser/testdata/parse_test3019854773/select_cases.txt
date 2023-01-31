@@ -1352,7 +1352,7 @@ INPUT
 select (ST_aswkb(cast(st_union(multipoint( point(8,6), point(1,-17679), point(-9,-9)), linestring(point(91,12), point(-77,49), point(53,-81)))as char(18)))) in ('1','2');
 END
 OUTPUT
-select ST_aswkb(cast(st_union(multipoint(point(8, 6), point(1, -17679), point(-9, -9)), linestring(point(91, 12), point(-77, 49), point(53, -81))) as char(18))) in ('1', '2') from dual
+select ST_aswkb(cast(st_union(multipoint(POINT(8,6), POINT(1,-17679), POINT(-9,-9)), linestring(POINT(91,12), POINT(-77,49), POINT(53,-81))) as char(18))) in ('1', '2') from dual
 END
 INPUT
 select 12%0 as 'NULL';
@@ -1448,7 +1448,7 @@ INPUT
 select ST_astext(ST_MPointFromWKB(ST_AsWKB(MultiPoint(Point('0', '-0'),Point('-0', '0'), Point('0', '0'))))) as result;
 END
 OUTPUT
-select ST_astext(ST_MPointFromWKB(ST_AsWKB(MultiPoint(point('0', '-0'), point('-0', '0'), point('0', '0'))))) as result from dual
+select ST_astext(ST_MPointFromWKB(ST_AsWKB(MultiPoint(POINT('0','-0'), POINT('-0','0'), POINT('0','0'))))) as result from dual
 END
 INPUT
 select table_name, index_type from information_schema.statistics where table_schema = 'test' and table_name = 'tm' order by table_name;
@@ -1532,7 +1532,7 @@ INPUT
 select ST_AsText(Polygon(LineString(Point(0, 0), Point(1, 0), Point(1,1), Point(0, 1), Point(0, 0))));
 END
 OUTPUT
-select ST_AsText(Polygon(LineString(point(0, 0), point(1, 0), point(1, 1), point(0, 1), point(0, 0)))) from dual
+select ST_AsText(Polygon(LineString(POINT(0,0), POINT(1,0), POINT(1,1), POINT(0,1), POINT(0,0)))) from dual
 END
 INPUT
 select get_lock('ee_16407_5', 60);
@@ -2840,7 +2840,7 @@ INPUT
 select ST_astext(ST_centroid(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(Point(0, 0), Point(30, 0), Point(30, 30), Point(1, 0), Point(0, 0)))))));
 END
 OUTPUT
-select ST_astext(ST_centroid(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(point(0, 0), point(30, 0), point(30, 30), point(1, 0), point(0, 0))))))) from dual
+select ST_astext(ST_centroid(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(POINT(0,0), POINT(30,0), POINT(30,30), POINT(1,0), POINT(0,0))))))) from dual
 END
 INPUT
 select null sounds like 'null';
@@ -3038,7 +3038,7 @@ INPUT
 select st_union((cast(linestring(point(6,-68), point(-22,-4)) as binary(13))), st_intersection(point(6,8),multipoint(point(3,1),point(-4,-6),point(1,6),point(-3,-5),point(5,4))));
 END
 OUTPUT
-select st_union(cast(linestring(point(6, -68), point(-22, -4)) as binary(13)), st_intersection(point(6, 8), multipoint(point(3, 1), point(-4, -6), point(1, 6), point(-3, -5), point(5, 4)))) from dual
+select st_union(cast(linestring(POINT(6,-68), POINT(-22,-4)) as binary(13)), st_intersection(POINT(6,8), multipoint(POINT(3,1), POINT(-4,-6), POINT(1,6), POINT(-3,-5), POINT(5,4)))) from dual
 END
 INPUT
 select st_disjoint(st_intersection(ST_GeomFromText('point(1 1)'), ST_GeomFromText('multipoint(2 2, 3 3)')), st_union(ST_GeomFromText('point(0 0)'), ST_GeomFromText('point(1 1)')));
@@ -3986,7 +3986,7 @@ INPUT
 select ST_astext(Polygon(LineString(Point(0, 0), Point(30, 0), Point(30, 30), Point(1, 0), Point(0, 0))));
 END
 OUTPUT
-select ST_astext(Polygon(LineString(point(0, 0), point(30, 0), point(30, 30), point(1, 0), point(0, 0)))) from dual
+select ST_astext(Polygon(LineString(POINT(0,0), POINT(30,0), POINT(30,30), POINT(1,0), POINT(0,0)))) from dual
 END
 INPUT
 select host,user from mysql.user where User='myuser';
@@ -5684,7 +5684,7 @@ INPUT
 select st_distance(linestring(point(26,87),point(13,95)), geometrycollection(point(4.297374e+307,8.433875e+307))) as dist;
 END
 OUTPUT
-select st_distance(linestring(point(26, 87), point(13, 95)), geometrycollection(point(4.297374e+307, 8.433875e+307))) as dist from dual
+select st_distance(linestring(POINT(26,87), POINT(13,95)), geometrycollection(POINT(4.297374e+307,8.433875e+307))) as dist from dual
 END
 INPUT
 select count(not_existing_database.t1.a) from not_existing_database.t1;
@@ -6308,7 +6308,7 @@ INPUT
 select ST_astext(ST_convexhull(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(Point(0, 0), Point(30, 0), Point(30, 30), Point(1, 0), Point(0, 0)))))));
 END
 OUTPUT
-select ST_astext(ST_convexhull(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(point(0, 0), point(30, 0), point(30, 30), point(1, 0), point(0, 0))))))) from dual
+select ST_astext(ST_convexhull(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(POINT(0,0), POINT(30,0), POINT(30,30), POINT(1,0), POINT(0,0))))))) from dual
 END
 INPUT
 select * from t1 where i between 2 and 4 and v in ('def','3r4f','abc');
@@ -7796,7 +7796,7 @@ INPUT
 select st_distance(linestring(point(26,87),point(13,95)), geometrycollection(point(4.297374e+307,8.433875e+307), point(1e308, 1e308))) as dist;
 END
 OUTPUT
-select st_distance(linestring(point(26, 87), point(13, 95)), geometrycollection(point(4.297374e+307, 8.433875e+307), point(1e308, 1e308))) as dist from dual
+select st_distance(linestring(POINT(26,87), POINT(13,95)), geometrycollection(POINT(4.297374e+307,8.433875e+307), POINT(1e308,1e308))) as dist from dual
 END
 INPUT
 select group_concat(t1.b,t2.c) from t1 left join t2 using(a) group by a;
@@ -8168,7 +8168,7 @@ INPUT
 select ST_Astext(ST_Envelope(ST_MPointFromWKB(ST_AsWKB(MultiPoint(Point('0', '0'),Point('-0', '0'), Point('0', '-0')))))) as result;
 END
 OUTPUT
-select ST_Astext(ST_Envelope(ST_MPointFromWKB(ST_AsWKB(MultiPoint(point('0', '0'), point('-0', '0'), point('0', '-0')))))) as result from dual
+select ST_Astext(ST_Envelope(ST_MPointFromWKB(ST_AsWKB(MultiPoint(POINT('0','0'), POINT('-0','0'), POINT('0','-0')))))) as result from dual
 END
 INPUT
 select constraint_name from information_schema.table_constraints where table_schema='test' order by constraint_name;
@@ -9398,7 +9398,7 @@ INPUT
 select st_astext(st_union(cast(point(1,1)as char(15)),point(1,1))) as res;
 END
 OUTPUT
-select st_astext(st_union(cast(point(1, 1) as char(15)), point(1, 1))) as res from dual
+select st_astext(st_union(cast(POINT(1,1) as char(15)), POINT(1,1))) as res from dual
 END
 INPUT
 select cast('' as signed);
@@ -9422,7 +9422,7 @@ INPUT
 select ST_AsText(ST_GeometryFromWKB(ST_AsWKB(GeometryCollection(POINT(0, 0), MULTIPOINT(point(0, 0), point(1, 1)), LINESTRING(point(0, 0),point(10, 10)), MULTILINESTRING(LINESTRING(point(1, 2), point(1, 3))), POLYGON(LineString(Point(10, 20), Point(1, 1), Point(2, 2), Point(1, 1), Point(10, 20))), MULTIPOLYGON(Polygon(LineString(Point(0, 0), Point(1, 0), Point(1, 1), Point(0, 0)))))))) as Result;
 END
 OUTPUT
-select ST_AsText(ST_GeometryFromWKB(ST_AsWKB(GeometryCollection(point(0, 0), MULTIPOINT(point(0, 0), point(1, 1)), LINESTRING(point(0, 0), point(10, 10)), MULTILINESTRING(LINESTRING(point(1, 2), point(1, 3))), POLYGON(LineString(point(10, 20), point(1, 1), point(2, 2), point(1, 1), point(10, 20))), MULTIPOLYGON(Polygon(LineString(point(0, 0), point(1, 0), point(1, 1), point(0, 0)))))))) as Result from dual
+select ST_AsText(ST_GeometryFromWKB(ST_AsWKB(GeometryCollection(POINT(0,0), MULTIPOINT(POINT(0,0), POINT(1,1)), LINESTRING(POINT(0,0), POINT(10,10)), MULTILINESTRING(LINESTRING(POINT(1,2), POINT(1,3))), POLYGON(LineString(POINT(10,20), POINT(1,1), POINT(2,2), POINT(1,1), POINT(10,20))), MULTIPOLYGON(Polygon(LineString(POINT(0,0), POINT(1,0), POINT(1,1), POINT(0,0)))))))) as Result from dual
 END
 INPUT
 select s1*0 as s1 from t1 group by s1 having s1 <> 0;
@@ -9494,7 +9494,7 @@ INPUT
 select st_difference((convert(st_polygonfromwkb(linestring(point(1,1))) using gb18030)), st_geomcollfromwkb(point(1,1)));
 END
 OUTPUT
-select st_difference(convert(st_polygonfromwkb(linestring(point(1, 1))) using gb18030), st_geomcollfromwkb(point(1, 1))) from dual
+select st_difference(convert(st_polygonfromwkb(linestring(POINT(1,1))) using gb18030), st_geomcollfromwkb(POINT(1,1))) from dual
 END
 INPUT
 select convert(_koi8r'�' using utf8mb4) < convert(_koi8r'�' using utf8mb4);
@@ -10340,7 +10340,7 @@ INPUT
 select ST_astext(ST_geomfromwkb(ST_AsWKB(st_intersection(linestring(point(-59,82),point(32,29)), point(2,-5))))) as result;
 END
 OUTPUT
-select ST_astext(ST_geomfromwkb(ST_AsWKB(st_intersection(linestring(point(-59, 82), point(32, 29)), point(2, -5))))) as result from dual
+select ST_astext(ST_geomfromwkb(ST_AsWKB(st_intersection(linestring(POINT(-59,82), POINT(32,29)), POINT(2,-5))))) as result from dual
 END
 INPUT
 select event_name from performance_schema.events_stages_history_long where thread_id = @con1_thread_id and event_name like '%Opening %tables' or event_name like '%Locking system tables' or event_name like '%System lock';
@@ -12050,7 +12050,7 @@ INPUT
 select ST_astext(ST_MPointFromWKB(ST_AsWKB(MultiPoint(Point('0', '0'),Point('-0', '0'), Point('0', '-0'))))) as result;
 END
 OUTPUT
-select ST_astext(ST_MPointFromWKB(ST_AsWKB(MultiPoint(point('0', '0'), point('-0', '0'), point('0', '-0'))))) as result from dual
+select ST_astext(ST_MPointFromWKB(ST_AsWKB(MultiPoint(POINT('0','0'), POINT('-0','0'), POINT('0','-0'))))) as result from dual
 END
 INPUT
 select IF(0,"ERROR","this"),IF(1,"is","ERROR"),IF(NULL,"ERROR","a"),IF(1,2,3)|0,IF(1,2.0,3.0)+0;
@@ -16058,7 +16058,7 @@ INPUT
 select ST_astext(st_union( st_intersection( multipoint(point(-1,-1)), point(1,-1) ), st_difference( multipoint(point(-1,1)), point(-1,-1) )));
 END
 OUTPUT
-select ST_astext(st_union(st_intersection(multipoint(point(-1, -1)), point(1, -1)), st_difference(multipoint(point(-1, 1)), point(-1, -1)))) from dual
+select ST_astext(st_union(st_intersection(multipoint(POINT(-1,-1)), POINT(1,-1)), st_difference(multipoint(POINT(-1,1)), POINT(-1,-1)))) from dual
 END
 INPUT
 select * from t1, lateral (with qn as (select t1.a) select (select max(a) from qn)) as dt;
@@ -17318,7 +17318,7 @@ INPUT
 select st_astext(st_buffer(point(-5,0),8772, st_buffer_strategy( 'point_circle',1024*1024*1024))) as result;
 END
 OUTPUT
-select st_astext(st_buffer(point(-5, 0), 8772, st_buffer_strategy('point_circle', 1024 * 1024 * 1024))) as result from dual
+select st_astext(st_buffer(POINT(-5,0), 8772, st_buffer_strategy('point_circle', 1024 * 1024 * 1024))) as result from dual
 END
 INPUT
 select group_concat(c1 order by binary c1 separator '') from t1 group by c1 collate utf32_vietnamese_ci;
@@ -18620,7 +18620,7 @@ INPUT
 select st_within( multipoint(point(4,2),point(-6,-8)), polygon( linestring(point(13,0),point(13,0)), linestring(point(2,4), point(2,4)) ));
 END
 OUTPUT
-select st_within(multipoint(point(4, 2), point(-6, -8)), polygon(linestring(point(13, 0), point(13, 0)), linestring(point(2, 4), point(2, 4)))) from dual
+select st_within(multipoint(POINT(4,2), POINT(-6,-8)), polygon(linestring(POINT(13,0), POINT(13,0)), linestring(POINT(2,4), POINT(2,4)))) from dual
 END
 INPUT
 select lpad('hello', -18446744073709551615, '1');
@@ -19670,7 +19670,7 @@ INPUT
 select ST_AsText(ST_GeometryFromWKB(ST_AsWKB(GeometryCollection(POINT(0, 0), MULTIPOINT(point(0, 0), point(1, 1)), LINESTRING(point(0, 0),point(10, 10)), MULTILINESTRING(LINESTRING(point(1, 2), point(1, 3))), POLYGON(LineString(Point(10, 20), Point(1, 1), Point(2, 2), Point(10, 20))), MULTIPOLYGON(Polygon(LineString(Point(0, 0), Point(1, 0), Point(1, 1), Point(0, 0)))))))) as Result;
 END
 OUTPUT
-select ST_AsText(ST_GeometryFromWKB(ST_AsWKB(GeometryCollection(point(0, 0), MULTIPOINT(point(0, 0), point(1, 1)), LINESTRING(point(0, 0), point(10, 10)), MULTILINESTRING(LINESTRING(point(1, 2), point(1, 3))), POLYGON(LineString(point(10, 20), point(1, 1), point(2, 2), point(10, 20))), MULTIPOLYGON(Polygon(LineString(point(0, 0), point(1, 0), point(1, 1), point(0, 0)))))))) as Result from dual
+select ST_AsText(ST_GeometryFromWKB(ST_AsWKB(GeometryCollection(POINT(0,0), MULTIPOINT(POINT(0,0), POINT(1,1)), LINESTRING(POINT(0,0), POINT(10,10)), MULTILINESTRING(LINESTRING(POINT(1,2), POINT(1,3))), POLYGON(LineString(POINT(10,20), POINT(1,1), POINT(2,2), POINT(10,20))), MULTIPOLYGON(Polygon(LineString(POINT(0,0), POINT(1,0), POINT(1,1), POINT(0,0)))))))) as Result from dual
 END
 INPUT
 select bar from t1 having group_concat(bar)='';
@@ -20378,7 +20378,7 @@ INPUT
 select ST_Astext(ST_Envelope(ST_MPointFromWKB(ST_AsWKB(MultiPoint(Point('0', '-0'),Point('-0', '0'), Point('0', '0')))))) as result;
 END
 OUTPUT
-select ST_Astext(ST_Envelope(ST_MPointFromWKB(ST_AsWKB(MultiPoint(point('0', '-0'), point('-0', '0'), point('0', '0')))))) as result from dual
+select ST_Astext(ST_Envelope(ST_MPointFromWKB(ST_AsWKB(MultiPoint(POINT('0','-0'), POINT('-0','0'), POINT('0','0')))))) as result from dual
 END
 INPUT
 select date_add("9999-12-31 23:59:59",INTERVAL 1 SECOND);
@@ -21338,7 +21338,7 @@ INPUT
 select point(b, b) IS NULL, linestring(b) IS NULL, polygon(b) IS NULL, multipoint(b) IS NULL, multilinestring(b) IS NULL, multipolygon(b) IS NULL, geometrycollection(b) IS NULL from t1;
 END
 OUTPUT
-select point(b, b) is null, linestring(b) is null, polygon(b) is null, multipoint(b) is null, multilinestring(b) is null, multipolygon(b) is null, geometrycollection(b) is null from t1
+select POINT(b,b) is null, linestring(b) is null, polygon(b) is null, multipoint(b) is null, multilinestring(b) is null, multipolygon(b) is null, geometrycollection(b) is null from t1
 END
 INPUT
 select * from information_schema.table_privileges where grantee like '%user%' and table_schema !='mysql' order by grantee;
@@ -22172,7 +22172,7 @@ INPUT
 select ST_astext(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(Point(0, 0), Point(30, 0), Point(30, 30), Point(1, 0), Point(0, 0))))));
 END
 OUTPUT
-select ST_astext(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(point(0, 0), point(30, 0), point(30, 30), point(1, 0), point(0, 0)))))) from dual
+select ST_astext(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(POINT(0,0), POINT(30,0), POINT(30,30), POINT(1,0), POINT(0,0)))))) from dual
 END
 INPUT
 select count(*) from `load`;
@@ -23120,5 +23120,5 @@ INPUT
 select ST_astext(ST_envelope(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(Point(0, 0), Point(30, 0), Point(30, 30), Point(1, 0), Point(0, 0)))))));
 END
 OUTPUT
-select ST_astext(ST_envelope(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(point(0, 0), point(30, 0), point(30, 30), point(1, 0), point(0, 0))))))) from dual
+select ST_astext(ST_envelope(ST_PolyFromWKB(ST_AsWKB(Polygon(LineString(POINT(0,0), POINT(30,0), POINT(30,30), POINT(1,0), POINT(0,0))))))) from dual
 END

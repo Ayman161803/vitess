@@ -349,6 +349,8 @@ func CloneSQLNode(in SQLNode) SQLNode {
 		return ClonePartitions(in)
 	case *PerformanceSchemaFuncExpr:
 		return CloneRefOfPerformanceSchemaFuncExpr(in)
+	case *Point:
+		return CloneRefOfPoint(in)
 	case *PrepareStmt:
 		return CloneRefOfPrepareStmt(in)
 	case ReferenceAction:
@@ -2240,6 +2242,17 @@ func CloneRefOfPerformanceSchemaFuncExpr(n *PerformanceSchemaFuncExpr) *Performa
 	return &out
 }
 
+// CloneRefOfPoint creates a deep clone of the input.
+func CloneRefOfPoint(n *Point) *Point {
+	if n == nil {
+		return nil
+	}
+	out := *n
+	out.XCordinate = CloneExpr(n.XCordinate)
+	out.YCordinate = CloneExpr(n.YCordinate)
+	return &out
+}
+
 // CloneRefOfPrepareStmt creates a deep clone of the input.
 func CloneRefOfPrepareStmt(n *PrepareStmt) *PrepareStmt {
 	if n == nil {
@@ -3321,6 +3334,8 @@ func CloneCallable(in Callable) Callable {
 		return CloneRefOfNtileExpr(in)
 	case *PerformanceSchemaFuncExpr:
 		return CloneRefOfPerformanceSchemaFuncExpr(in)
+	case *Point:
+		return CloneRefOfPoint(in)
 	case *RegexpInstrExpr:
 		return CloneRefOfRegexpInstrExpr(in)
 	case *RegexpLikeExpr:
@@ -3595,6 +3610,8 @@ func CloneExpr(in Expr) Expr {
 		return CloneRefOfOrExpr(in)
 	case *PerformanceSchemaFuncExpr:
 		return CloneRefOfPerformanceSchemaFuncExpr(in)
+	case *Point:
+		return CloneRefOfPoint(in)
 	case *RegexpInstrExpr:
 		return CloneRefOfRegexpInstrExpr(in)
 	case *RegexpLikeExpr:
