@@ -181,6 +181,8 @@ func CloneSQLNode(in SQLNode) SQLNode {
 		return CloneRefOfFuncExpr(in)
 	case *GTIDFuncExpr:
 		return CloneRefOfGTIDFuncExpr(in)
+	case *GeomFromTextExpr:
+		return CloneRefOfGeomFromTextExpr(in)
 	case GroupBy:
 		return CloneGroupBy(in)
 	case *GroupConcatExpr:
@@ -1361,6 +1363,18 @@ func CloneRefOfGTIDFuncExpr(n *GTIDFuncExpr) *GTIDFuncExpr {
 	out.Set2 = CloneExpr(n.Set2)
 	out.Timeout = CloneExpr(n.Timeout)
 	out.Channel = CloneExpr(n.Channel)
+	return &out
+}
+
+// CloneRefOfGeomFromTextExpr creates a deep clone of the input.
+func CloneRefOfGeomFromTextExpr(n *GeomFromTextExpr) *GeomFromTextExpr {
+	if n == nil {
+		return nil
+	}
+	out := *n
+	out.WktText = CloneExpr(n.WktText)
+	out.Srid = CloneExpr(n.Srid)
+	out.AxisOrderOpt = CloneExpr(n.AxisOrderOpt)
 	return &out
 }
 
@@ -3328,6 +3342,8 @@ func CloneCallable(in Callable) Callable {
 		return CloneRefOfFuncExpr(in)
 	case *GTIDFuncExpr:
 		return CloneRefOfGTIDFuncExpr(in)
+	case *GeomFromTextExpr:
+		return CloneRefOfGeomFromTextExpr(in)
 	case *GroupConcatExpr:
 		return CloneRefOfGroupConcatExpr(in)
 	case *InsertExpr:
@@ -3594,6 +3610,8 @@ func CloneExpr(in Expr) Expr {
 		return CloneRefOfFuncExpr(in)
 	case *GTIDFuncExpr:
 		return CloneRefOfGTIDFuncExpr(in)
+	case *GeomFromTextExpr:
+		return CloneRefOfGeomFromTextExpr(in)
 	case *GroupConcatExpr:
 		return CloneRefOfGroupConcatExpr(in)
 	case *InsertExpr:

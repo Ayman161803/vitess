@@ -2735,6 +2735,13 @@ type (
 		PolygonParams Exprs
 	}
 
+	GeomFromTextExpr struct {
+		Type         string
+		WktText      Expr
+		Srid         Expr
+		AxisOrderOpt Expr
+	}
+
 	AggrFunc interface {
 		Expr
 		AggrName() string
@@ -3067,6 +3074,7 @@ func (*PolygonExpr) iExpr()                        {}
 func (*MultiPolygonExpr) iExpr()                   {}
 func (*MultiPointExpr) iExpr()                     {}
 func (*MultiLinestringExpr) iExpr()                {}
+func (*GeomFromTextExpr) iExpr()                   {}
 
 // iCallable marks all expressions that represent function calls
 func (*FuncExpr) iCallable()                           {}
@@ -3126,6 +3134,7 @@ func (*PolygonExpr) iCallable()                        {}
 func (*MultiPolygonExpr) iCallable()                   {}
 func (*MultiPointExpr) iCallable()                     {}
 func (*MultiLinestringExpr) iCallable()                {}
+func (*GeomFromTextExpr) iCallable()                   {}
 
 func (*Sum) iCallable()       {}
 func (*Min) iCallable()       {}
